@@ -1,43 +1,86 @@
 'use client';
+import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
+import { ExternalLink, Quote } from 'lucide-react';
 import Image from 'next/image';
-import { ExternalLink } from 'lucide-react';
 
 export default function TestimonialCard({ testimonial }) {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }) {
+    let { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
   return (
-    <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 h-full flex flex-col">
-      <div className="flex-1">
-        <div className="flex items-center gap-4 mb-6">
-          <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-[#9B87FE]">
-            <Image
-              src={testimonial.image}
-              alt={testimonial.name}
-              fill
-              className="object-cover"
-            />
+    <div
+      className="group relative h-full rounded-2xl border border-white/5 bg-[#0B1843]/50 px-8 py-10 backdrop-blur-sm transition-colors hover:border-[#9b87fe]/30"
+      onMouseMove={handleMouseMove}
+    >
+      <motion.div
+        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition duration-300 group-hover:opacity-100"
+        style={{
+          background: useMotionTemplate`
+            radial-gradient(
+              650px circle at ${mouseX}px ${mouseY}px,
+              rgba(155, 135, 254, 0.15),
+              transparent 80%
+            )
+          `,
+        }}
+      />
+
+      <div className="relative flex h-full flex-col gap-8">
+        <div className="flex items-center gap-5">
+          <div className="relative h-16 w-16 shrink-0 rounded-full border-2 border-[#893193] p-1 shadow-[0_0_20px_rgba(137,49,147,0.3)]">
+            <div className="relative h-full w-full overflow-hidden rounded-full">
+              <Image
+                src={testimonial.image}
+                alt={testimonial.name}
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
+
           <div>
-            <h6 className="text-xl font-semibold text-white">
+            <h6 className="text-lg font-bold text-white tracking-wide font-poppins">
               {testimonial.name}
             </h6>
-            <p className="text-sm text-[#9B87FE]">{testimonial.role}</p>
-            <p className="text-sm text-gray-400">{testimonial.company}</p>
+            <div className="flex flex-col">
+              <span className="text-sm font-medium text-[#9b87fe]">
+                {testimonial.role}
+              </span>
+              <span className="text-xs text-gray-400 font-semibold tracking-wider">
+                {testimonial.company}
+              </span>
+            </div>
           </div>
+        </div>{' '}
+        <div className="relative flex-1">
+          <Quote className="absolute -left-1 -top-3 h-10 w-10 text-[#9b87fe]/10 rotate-180" />
+          <blockquote className="relative z-10 pl-6 border-l-2 border-[#893193]/50">
+            <p className="text-base leading-relaxed text-gray-200 font-light italic">
+              "{testimonial.quote}"
+            </p>
+          </blockquote>
         </div>
-        <p className="text-gray-300 leading-relaxed mb-4">
-          {testimonial.quote}
-        </p>
+        {testimonial.blogUrl && (
+          <div className="pt-2">
+            {' '}
+            <a
+              href={testimonial.blogUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/link inline-flex items-center gap-2 text-sm font-medium text-[#9b87fe] hover:text-white transition-colors"
+            >
+              Read case study
+              <ExternalLink className="h-4 w-4 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+            </a>
+          </div>
+        )}
       </div>
-      {testimonial.blogUrl && (
-        <a
-          href={testimonial.blogUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-[#9B87FE] hover:text-[#8A76ED] transition-colors mt-4"
-        >
-          Read the full blog
-          <ExternalLink className="w-4 h-4" />
-        </a>
-      )}
     </div>
   );
 }

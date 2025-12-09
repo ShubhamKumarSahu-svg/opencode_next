@@ -1,51 +1,104 @@
 'use client';
-import { motion } from 'framer-motion';
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useSpring,
+} from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
-import { ExternalLink } from 'lucide-react';
+import { useRef } from 'react';
+
+const ROTATION_RANGE = 20.5;
+const HALF_ROTATION_RANGE = 20.5 / 2;
 
 export default function ProjectCard({ project, index }) {
+  const ref = useRef(null);
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const xSpring = useSpring(x);
+  const ySpring = useSpring(y);
+
+  const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
+
+  const handleMouseMove = (e) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = (e.clientX - rect.left) * ROTATION_RANGE;
+    const mouseY = (e.clientY - rect.top) * ROTATION_RANGE;
+    const rX = (mouseY / height - HALF_ROTATION_RANGE) * -1;
+    const rY = mouseX / width - HALF_ROTATION_RANGE;
+    x.set(rX);
+    y.set(rY);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
   return (
-    <motion.a
-      href={project.url}
-      target="_blank"
-      rel="noopener noreferrer"
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.05 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="group relative bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-[#9B87FE] transition-all duration-300 hover:scale-105"
+      style={{ transformStyle: 'preserve-3d', transform }}
+      className="relative h-full rounded-xl bg-white/5 border border-white/10 p-1 backdrop-blur-sm"
     >
-      <div className="relative h-48 w-full overflow-hidden">
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="object-cover group-hover:scale-110 transition-transform duration-300"
-        />
-      </div>
-      <div className="p-6">
-        <div className="flex items-center justify-between mb-3">
-          <h4 className="text-xl font-semibold text-white group-hover:text-[#9B87FE] transition-colors">
-            {project.title}
-          </h4>
-          <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-[#9B87FE] transition-colors" />
+      <div
+        style={{ transform: 'translateZ(50px)' }}
+        className="absolute inset-4 -z-10 rounded-xl bg-[#893193]/30 blur-2xl transition-opacity duration-500 opacity-0 group-hover:opacity-100"
+      />
+
+      <div className="relative h-full flex flex-col overflow-hidden rounded-lg bg-[#0B1843] shadow-2xl">
+        <div className="relative h-52 w-full overflow-hidden group">
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0B1843] to-transparent opacity-80" />
         </div>
-        <p className="text-gray-300 text-sm leading-relaxed mb-4">
-          {project.description}
-        </p>
-        {project.tags && (
+
+        <div className="flex flex-1 flex-col p-6">
+          <div className="mb-4 flex items-start justify-between">
+            <h4 className="text-xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-600 transition-all">
+              {project.title}
+            </h4>
+            <a
+              href={project.url}
+              target="_blank"
+              className="rounded-full bg-white/5 p-2 text-white/70 hover:bg-[#9b87fe] hover:text-white transition-all shadow-[0_0_15px_rgba(155,135,254,0.3)]"
+            >
+              <ArrowUpRight className="h-5 w-5" />
+            </a>
+          </div>
+
+          <p className="mb-6 flex-1 text-sm leading-relaxed text-gray-300 font-light">
+            {project.description}
+          </p>
+
           <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag, i) => (
+            {project.tags?.map((tag, i) => (
               <span
                 key={i}
-                className="px-2 py-1 text-xs bg-[#9B87FE]/20 text-[#9B87FE] rounded-full"
+                className="rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-medium text-[#9b87fe] transition-colors hover:border-[#9b87fe]/50 hover:bg-[#9b87fe]/10"
               >
                 {tag}
               </span>
             ))}
           </div>
-        )}
+        </div>
       </div>
-    </motion.a>
+    </motion.div>
   );
 }

@@ -4,18 +4,37 @@ import { motion } from 'framer-motion';
 export default function StepCard({ step, index }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: index * 0.2 }}
       viewport={{ once: true }}
-      className="text-center max-w-xs mx-auto"
+      className="group relative flex flex-col items-center text-center p-6"
     >
-      <h1 className="text-6xl font-bold mb-4" style={{ color: step.color }}>
+      <span
+        className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-8 text-[160px] font-black leading-none text-white/5 select-none transition-all duration-500 group-hover:text-[#9b87fe]/5 group-hover:scale-105"
+        style={{ fontFamily: 'var(--font-poppins)' }}
+      >
         {step.number}
-      </h1>
-      <h3 className="text-2xl font-semibold mb-4">{step.title}</h3>
-      <div className="w-11 h-0.5 bg-[#893193] mx-auto mb-6"></div>
-      <p className="text-gray-300 leading-relaxed">{step.description}</p>
+      </span>
+
+      <div className="relative mb-8 mt-12">
+        <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-[#0B1843] border border-[#9b87fe]/30 shadow-[0_0_30px_-10px_rgba(155,135,254,0.3)] transition-all duration-300 group-hover:scale-110 group-hover:border-[#9b87fe] group-hover:shadow-[0_0_50px_-5px_rgba(155,135,254,0.5)]">
+          <span className="text-2xl font-bold bg-gradient-to-br from-purple-400 to-pink-600 bg-clip-text text-transparent">
+            {step.number}
+          </span>
+        </div>
+      </div>
+
+      <div className="relative z-10 max-w-xs">
+        <h3 className="mb-3 text-2xl font-bold text-white group-hover:text-[#9b87fe] transition-colors duration-300">
+          {step.title}
+        </h3>
+        <div className="w-12 h-1 bg-[#893193] mx-auto mb-5 rounded-full group-hover:w-24 transition-all duration-300"></div>
+
+        <p className="text-base leading-relaxed text-gray-300 group-hover:text-white transition-colors font-light">
+          {step.description}
+        </p>
+      </div>
     </motion.div>
   );
 }
