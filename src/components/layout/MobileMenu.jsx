@@ -79,7 +79,6 @@ export default function MobileMenu({ onClose, onNavigate }) {
           ))}
         </div>
 
-        {/* Decorative gradient */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#9B87FE]/20 to-transparent pointer-events-none" />
       </motion.div>
     </div>

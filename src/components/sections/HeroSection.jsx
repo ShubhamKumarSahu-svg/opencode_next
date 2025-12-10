@@ -18,7 +18,6 @@ export default function HeroSection() {
     >
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Text Content */}
           <motion.div
             style={{ y: yText, opacity }}
             initial={{ opacity: 0, x: -50 }}
@@ -79,7 +78,6 @@ export default function HeroSection() {
               </Button>
             </div>
 
-            {/* Stats */}
             <motion.div
               className="flex gap-8 mt-12 pt-8 border-t border-white/10"
               initial={{ opacity: 0, y: 20 }}
@@ -101,7 +99,6 @@ export default function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Image */}
           <motion.div
             style={{ y: yImg }}
             initial={{ opacity: 0, scale: 0.8 }}
@@ -123,11 +120,9 @@ export default function HeroSection() {
                 priority
               />
 
-              {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#9B87FE]/30 to-transparent blur-3xl -z-10" />
             </motion.div>
 
-            {/* Floating elements */}
             {[...Array(3)].map((_, i) => (
               <motion.div
                 key={i}

@@ -8,9 +8,6 @@ export default function SplashScreen({ finishLoading }) {
   const [count, setCount] = useState(0);
   const [particles, setParticles] = useState([]);
 
-  // ---------------------------
-  // 1️⃣ Countdown / completion timer
-  // ---------------------------
   useEffect(() => {
     const interval = setInterval(() => {
       setCount((prev) => {
@@ -33,9 +30,6 @@ export default function SplashScreen({ finishLoading }) {
     };
   }, [finishLoading]);
 
-  // ---------------------------
-  // 2️⃣ Generate particles safely after mount
-  // ---------------------------
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -64,7 +58,6 @@ export default function SplashScreen({ finishLoading }) {
         transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
       }}
     >
-      {/* 🌌 Animated Particles */}
       <div className="absolute inset-0 pointer-events-none">
         {particles.map((p, i) => (
           <motion.div
@@ -89,7 +82,6 @@ export default function SplashScreen({ finishLoading }) {
         ))}
       </div>
 
-      {/* Logo */}
       <motion.div
         initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
         animate={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -118,7 +110,6 @@ export default function SplashScreen({ finishLoading }) {
         />
       </motion.div>
 
-      {/* Text */}
       <motion.div
         className="mt-10 flex flex-col items-center gap-3"
         initial={{ opacity: 0, y: 20 }}
@@ -138,7 +129,6 @@ export default function SplashScreen({ finishLoading }) {
         </motion.p>
       </motion.div>
 
-      {/* Progress Bar */}
       <motion.div
         className="absolute bottom-0 left-0 h-1 bg-gradient-to-r
         from-[#9B87FE] via-[#FF9FB8] to-[#9B87FE]"
@@ -146,7 +136,6 @@ export default function SplashScreen({ finishLoading }) {
         transition={{ duration: 0.1 }}
       />
 
-      {/* Big Percentage */}
       <motion.div
         className="absolute bottom-12 right-12"
         initial={{ opacity: 0 }}

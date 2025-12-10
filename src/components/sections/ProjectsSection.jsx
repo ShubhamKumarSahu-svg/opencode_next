@@ -14,7 +14,6 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="relative py-32 scroll-mt-20">
       <div className="container-custom relative z-10">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -29,14 +28,12 @@ export default function ProjectsSection() {
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {projects.slice(0, visibleCount).map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
 
-        {/* Load More Button */}
         {visibleCount < projects.length && (
           <motion.div
             className="text-center"

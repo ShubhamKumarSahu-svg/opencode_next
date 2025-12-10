@@ -14,7 +14,7 @@ const ActiveBackground = memo(() => {
     const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
     let width = 0;
     let height = 0;
-    let dpr = Math.min(2, window.devicePixelRatio || 1); // Cap DPR for performance
+    let dpr = Math.min(2, window.devicePixelRatio || 1);
 
     const CONFIG = {
       STAR_DENSITY: 1 / 5000,
@@ -299,7 +299,6 @@ const ActiveBackground = memo(() => {
 
   return (
     <div className="fixed inset-0 z-[-1] overflow-hidden bg-[#0B1843] pointer-events-none">
-      {/* Animated gradient orbs */}
       <motion.div
         aria-hidden
         animate={{
@@ -331,7 +330,6 @@ const ActiveBackground = memo(() => {
 
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
-      {/* Subtle noise texture */}
       <div
         className="absolute inset-0 opacity-[0.02] mix-blend-overlay"
         style={{

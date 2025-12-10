@@ -18,7 +18,6 @@ export default function TestimonialCard({ testimonial }) {
       className="group relative h-full rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent px-8 py-10 backdrop-blur-xl overflow-hidden"
       onMouseMove={handleMouseMove}
     >
-      {/* Spotlight effect */}
       <motion.div
         className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
@@ -27,7 +26,6 @@ export default function TestimonialCard({ testimonial }) {
       />
 
       <div className="relative flex h-full flex-col gap-6">
-        {/* Header */}
         <div className="flex items-center gap-4">
           <div className="relative h-16 w-16 rounded-full overflow-hidden border-2 border-[#9B87FE] shadow-lg shadow-[#9B87FE]/30">
             <Image
@@ -48,7 +46,6 @@ export default function TestimonialCard({ testimonial }) {
           </div>
         </div>
 
-        {/* Quote */}
         <div className="relative flex-1">
           <Quote className="absolute -left-2 -top-3 h-10 w-10 text-[#9B87FE]/20 rotate-180" />
           <p className="relative z-10 text-gray-200 leading-relaxed pl-6 border-l-2 border-[#893193]/50 italic">
@@ -56,7 +53,6 @@ export default function TestimonialCard({ testimonial }) {
           </p>
         </div>
 
-        {/* Blog Link */}
         {testimonial.blogUrl && (
           <a
             href={testimonial.blogUrl}

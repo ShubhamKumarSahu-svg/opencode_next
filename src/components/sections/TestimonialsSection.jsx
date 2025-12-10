@@ -38,7 +38,6 @@ export default function TestimonialsSection() {
           </p>
         </motion.div>
 
-        {/* Carousel */}
         <div className="max-w-4xl mx-auto relative px-4 sm:px-16">
           <div className="relative min-h-[450px]">
             <AnimatePresence mode="wait" custom={direction}>
@@ -56,7 +55,6 @@ export default function TestimonialsSection() {
             </AnimatePresence>
           </div>
 
-          {/* Navigation */}
           <button
             onClick={() => paginate(-1)}
             aria-label="Previous testimonial"
@@ -73,7 +71,6 @@ export default function TestimonialsSection() {
             <ChevronRight size={24} />
           </button>
 
-          {/* Indicators */}
           <div className="flex justify-center gap-2 mt-8">
             {testimonials.map((_, i) => (
               <button

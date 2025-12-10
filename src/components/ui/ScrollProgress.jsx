@@ -26,7 +26,6 @@ export default function ScrollProgress() {
       setIsVisible(window.scrollY > 200);
     };
 
-    // Throttle scroll event for better performance
     let ticking = false;
     const onScroll = () => {
       if (!ticking) {

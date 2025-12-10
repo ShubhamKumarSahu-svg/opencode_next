@@ -18,16 +18,13 @@ const ProcessCard = ({ step, index }) => {
       whileHover={{ y: -8, transition: { duration: 0.3 } }}
       className="group relative h-full bg-gradient-to-br from-[#0B1843]/80 to-[#1a2654]/60 backdrop-blur-xl rounded-2xl border border-[#9B87FE]/10 p-8 transition-all duration-500 hover:border-[#9B87FE]/40 hover:shadow-2xl hover:shadow-[#9B87FE]/20 overflow-hidden"
     >
-      {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#9B87FE]/0 via-[#9B87FE]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-      {/* Step number watermark */}
       <div className="absolute -top-4 -right-4 text-[140px] font-black text-white/3 group-hover:text-[#9B87FE]/10 transition-colors leading-none">
         {step.number}
       </div>
 
       <div className="relative z-10 flex flex-col h-full items-center text-center">
-        {/* Icon */}
         <motion.div
           className="mb-6 p-5 bg-gradient-to-br from-[#9B87FE]/20 to-[#893193]/20 rounded-2xl shadow-lg shadow-[#9B87FE]/20 group-hover:shadow-[#9B87FE]/40 transition-shadow"
           whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
@@ -86,7 +83,6 @@ export default function HowItWorks() {
           />
         </div>
 
-        {/* Steps Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {HOW_IT_WORKS_STEPS.map((step, index) => (
             <ProcessCard key={step.id} step={step} index={index} />

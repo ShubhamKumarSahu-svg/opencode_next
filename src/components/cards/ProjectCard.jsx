@@ -65,14 +65,12 @@ export default function ProjectCard({ project, index }) {
       }}
       className="relative h-full rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 p-1 backdrop-blur-sm group select-none"
     >
-      {/* 3D Depth Glow */}
       <div
         style={{ transform: 'translateZ(50px)' }}
         className="absolute inset-4 -z-10 bg-gradient-to-br from-[#893193]/40 to-[#9B87FE]/40 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
       />
 
       <div className="relative h-full flex flex-col overflow-hidden rounded-xl bg-gradient-to-br from-[#0B1843] to-[#1a2654] shadow-2xl">
-        {/* Image */}
         <div className="relative h-52 w-full overflow-hidden">
           <Image
             src={project.image}
@@ -83,7 +81,6 @@ export default function ProjectCard({ project, index }) {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B1843] via-[#0B1843]/50 to-transparent" />
         </div>
 
-        {/* Content */}
         <div
           className="p-6 flex flex-col flex-1"
           style={{ transform: 'translateZ(25px)' }}
@@ -106,8 +103,6 @@ export default function ProjectCard({ project, index }) {
           <p className="text-sm text-gray-300 mb-4 flex-1 font-light leading-relaxed">
             {project.description}
           </p>
-
-          {/* Tags */}
           <div className="flex flex-wrap gap-2">
             {project.tags?.map((tag, i) => (
               <span

@@ -21,6 +21,7 @@ const Button = React.forwardRef(
       outline:
         'border-2 border-[#9B87FE] text-white hover:bg-[#9B87FE]/10 hover:border-[#8A76ED]',
       ghost: 'hover:bg-white/10 text-white',
+      nav: 'text-white/80 hover:text-white transition-colors',
     };
 
     const sizes = {
@@ -32,7 +33,7 @@ const Button = React.forwardRef(
     return (
       <button
         className={cn(
-          'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9B87FE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1843]',
+          'inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9B87FE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1843]',
           variants[variant],
           sizes[size],
           className

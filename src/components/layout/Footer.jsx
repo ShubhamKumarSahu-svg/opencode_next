@@ -1,7 +1,15 @@
 'use client';
+import { Button } from '@/components/ui/button';
 import { IMAGE_PATHS, SOCIAL_LINKS } from '@/lib/constants';
 import { motion } from 'framer-motion';
-import { ArrowUp, Facebook, Instagram, Mail, Twitter } from 'lucide-react';
+import {
+  ArrowUp,
+  Download,
+  Facebook,
+  Instagram,
+  Mail,
+  Twitter,
+} from 'lucide-react';
 import Image from 'next/image';
 
 const SocialIcon = ({ href, Icon, delay, label }) => (
@@ -29,14 +37,21 @@ const SocialIcon = ({ href, Icon, delay, label }) => (
 export default function Footer() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
+  const downloadBrochure = () => {
+    const link = document.createElement('a');
+    link.href = '/brochure.pdf';
+    link.download = 'OpenCode-Brochure.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <footer className="relative border-t border-white/10 pt-20 pb-10 overflow-hidden bg-gradient-to-b from-transparent to-[#0B1843]/50">
-      {/* Decorative gradient */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-px bg-gradient-to-r from-transparent via-[#9B87FE]/50 to-transparent" />
 
       <div className="container-custom relative z-10">
         <div className="grid gap-12 md:grid-cols-2 lg:items-end mb-12">
-          {/* Brand */}
           <motion.div
             className="space-y-6"
             initial={{ opacity: 0, y: 20 }}
@@ -67,9 +82,24 @@ export default function Footer() {
                 Empowering students through collaborative coding
               </p>
             </div>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <Button
+                variant="outline"
+                size="default"
+                onClick={downloadBrochure}
+                className="group"
+              >
+                <Download className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
+                Download Brochure
+              </Button>
+            </motion.div>
           </motion.div>
 
-          {/* Social Links */}
           <div className="flex flex-col gap-6 md:items-end">
             <motion.p
               className="text-sm font-semibold text-gray-400 uppercase tracking-wider"
@@ -119,7 +149,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
         <motion.div
           className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500"
           initial={{ opacity: 0 }}
