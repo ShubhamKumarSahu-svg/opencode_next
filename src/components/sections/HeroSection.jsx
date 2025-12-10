@@ -1,6 +1,6 @@
 'use client';
-import DownloadBrochureButton from '@/components/ui/DownloadBrochureButton';
-import { Button } from '@/components/ui/button';
+import DownloadBrochureButton from '@/components/ui/DownloadBrochureButton.jsx';
+import { Button } from '@/components/ui/Button';
 import { EXTERNAL_LINKS, IMAGE_PATHS } from '@/lib/constants';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
