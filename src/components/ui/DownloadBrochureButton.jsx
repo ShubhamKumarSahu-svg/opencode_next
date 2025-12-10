@@ -1,5 +1,5 @@
 'use client';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button.jsx';
 import { Download } from 'lucide-react';
 
 export default function DownloadBrochureButton({
