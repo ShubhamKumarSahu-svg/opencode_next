@@ -1,8 +1,15 @@
 'use client';
 import { IMAGE_PATHS, SOCIAL_LINKS } from '@/lib/constants';
 import { motion } from 'framer-motion';
-import { ArrowUp, Mail, } from 'lucide-react';
+import {
+  ArrowUp,
+  FacebookIcon,
+  InstagramIcon,
+  Mail,
+  TwitterIcon,
+} from 'lucide-react';
 import Image from 'next/image';
+import DownloadBrochureButton from '../ui/DownloadBrochureButton';
 
 const SocialIcon = ({ href, Icon, delay, label }) => (
   <motion.a
@@ -87,19 +94,19 @@ export default function Footer() {
             <div className="flex gap-4">
               <SocialIcon
                 href={SOCIAL_LINKS.twitter}
-                Icon={Twitter}
+                Icon={TwitterIcon}
                 delay={0.1}
                 label="Twitter"
               />
               <SocialIcon
                 href={SOCIAL_LINKS.facebook}
-                Icon={Facebook}
+                Icon={FacebookIcon}
                 delay={0.2}
                 label="Facebook"
               />
               <SocialIcon
                 href={SOCIAL_LINKS.instagram}
-                Icon={Instagram}
+                Icon={InstagramIcon}
                 delay={0.3}
                 label="Instagram"
               />
