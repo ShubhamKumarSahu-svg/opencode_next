@@ -1,11 +1,11 @@
-'use client'; // This must be a client component now to manage state
+'use client';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 import ActiveBackground from '@/components/layout/ActiveBackground';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
-import SplashScreen from '@/components/layout/SplashScreen'; // Import new component
+import SplashScreen from '@/components/layout/SplashScreen';
 import HeroSection from '@/components/sections/HeroSection';
 import HowItWorks from '@/components/sections/HowItWorks';
 import ProjectsSection from '@/components/sections/ProjectsSection';
@@ -15,11 +15,9 @@ import TestimonialsSection from '@/components/sections/TestimonialsSection';
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Optional: Prevent scrolling while splash is active
   useEffect(() => {
     if (isLoading) {
       document.body.style.overflow = 'hidden';
-      // Scroll to top to ensure we start fresh when curtain lifts
       window.scrollTo(0, 0);
     } else {
       document.body.style.overflow = 'unset';
