@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 export default function ProjectsSection() {
-  const [visibleCount, setVisibleCount] = useState(9);
+  const [visibleCount, setVisibleCount] = useState(6);
 
   const loadMore = () => {
     setVisibleCount((prev) => Math.min(prev + 6, projects.length));
